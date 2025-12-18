@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<header>
+<nav>
+<h1>Gargi Import Export</h1>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="services.html">Products & Services</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+
+<section>
+<h2>Connecting Global Markets with Quality Products</h2>
+<p>Gargi Import Export is a trusted import-export company delivering high-quality products worldwide with reliability and transparency.</p>
+<h3>Why Choose Us</h3>
+<ul>
+<li>Reliable Global Trade Partner</li>
+<li>Strict Quality Control</li>
+<li>Competitive Pricing</li>
+<li>On-Time Delivery</li>
+</ul>
+<a href="contact.html" class="button">Contact Us</a>
+</section>
+
+
+<footer>© 2025 Gargi Import Export</footer>
+
+
+</body>
+</html><head>
+<title>Gargi Import Export</title>
+<link rel="stylesheet" href="style.css">
+</head>
+zz
