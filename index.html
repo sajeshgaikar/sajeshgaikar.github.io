@@ -4,156 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GARGI IMPORT EXPORT – Home</title>
-
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       line-height: 1.7;
       color: #333;
-      background: #f5f7fa;
+      background: linear-gradient(-45deg, #c8e6c9, #a5d6a7, #81c784, #66bb6a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
     }
 
-    /* HEADER */
-    header {
-      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("images/hero.jpg") center/cover no-repeat;
-      color: #fff;
-      padding: 90px 20px;
-      text-align: center;
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    header h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    /* NAV */
+    /* NAVIGATION */
     nav {
-      background: #1f5d45;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(5px);
       display: flex;
       justify-content: center;
-      padding: 14px;
+      padding: 15px;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
     }
-
     nav a {
       color: #fff;
       margin: 0 18px;
       text-decoration: none;
       font-weight: 600;
-      letter-spacing: 0.5px;
+      padding: 8px 15px;
+      border-radius: 25px;
+      transition: 0.3s;
+    }
+    nav a:hover { background: rgba(255,255,255,0.2); }
+
+    /* HERO SECTION */
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px;
+      color: #fff;
+    }
+    header h1 {
+      font-size: 3.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+    }
+    .hero-btn {
+      display: inline-block;
+      background: #1b5e20;
+      color: #fff;
+      padding: 15px 30px;
+      margin: 5px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .hero-btn:hover {
+      background: #43a047;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    nav a:hover {
-      color: #ffd966;
-    }
-
-    /* SECTION */
+    /* SECTIONS */
     section {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
       padding: 60px 20px;
     }
+    h2 { color: #1b5e20; margin-bottom: 30px; text-align: center; }
 
-    h2 {
-      color: #2a7f62;
-      margin-bottom: 20px;
-      font-size: 2rem;
-      text-align: center;
-    }
-
-    p {
-      margin-bottom: 18px;
-      text-align: center;
-    }
-
-    /* WHY US */
-    .why-us {
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 40px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-      margin-top: 40px;
-    }
-
+    /* WHY US CARDS */
     .why-us ul {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: 25px;
       list-style: none;
-      margin-top: 30px;
     }
-
     .why-us li {
-      background: #f0f8f5;
-      padding: 20px;
-      border-radius: 8px;
-      border-left: 5px solid #2a7f62;
+      background: rgba(255,255,255,0.9);
+      padding: 25px;
+      border-radius: 15px;
+      border-left: 6px solid #1b5e20;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
-    /* PRODUCTS */
-    .products {
-      margin-top: 60px;
+    .why-us li:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
+    .why-us li strong { color: #1b5e20; font-size: 1.1rem; }
 
+    /* PRODUCTS GRID */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 25px;
       margin-top: 40px;
     }
-
     .product-card {
-      background: #fff;
-      border-radius: 12px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-      transition: transform 0.3s;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
     }
-
     .product-card:hover {
       transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
-
     .product-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
-
     .product-card h3 {
       padding: 15px;
-      color: #1f5d45;
-      text-align: center;
+      color: #1b5e20;
     }
 
-    /* REACH */
+    /* REACH SECTION */
     .reach {
-      background: #e9f5f0;
-      border-radius: 10px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 15px;
       padding: 40px;
       margin-top: 60px;
       text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
 
     /* FOOTER */
     footer {
-      background: #1f5d45;
+      background: #1b5e20;
       color: #fff;
       text-align: center;
       padding: 25px;
@@ -162,10 +165,9 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem;
-      }
+    @media (max-width:768px) {
+      header h1 { font-size: 2.4rem; }
+      header p { font-size: 1rem; }
     }
   </style>
 </head>
@@ -175,6 +177,8 @@
 <header>
   <h1>GARGI IMPORT EXPORT</h1>
   <p>Your Trusted Global Partner for Premium Indian Agricultural & Commodity Products</p>
+  <a href="products.html" class="hero-btn">Explore Products</a>
+  <a href="contact.html" class="hero-btn">Contact Us</a>
 </header>
 
 <nav>
@@ -185,15 +189,8 @@
 </nav>
 
 <section>
-  <h2>Welcome to GARGI IMPORT EXPORT</h2>
-  <p>
-    GARGI IMPORT EXPORT is a reliable global exporter of premium Indian products.
-    We specialize in fresh fruits, vegetables, spices, pulses, dry fruits,
-    coconut, edible oils, raw cotton, raw leather, and herbal products.
-  </p>
-
+  <h2>Why Choose Us</h2>
   <div class="why-us">
-    <h2>Why Choose Us</h2>
     <ul>
       <li><strong>Direct Farmer Sourcing</strong><br>Fresh, traceable & high-quality produce</li>
       <li><strong>Strong Supply Chain</strong><br>Efficient logistics & timely delivery</li>
@@ -202,38 +199,29 @@
     </ul>
   </div>
 
-  <div class="products">
-    <h2>Featured Products</h2>
-
-    <div class="product-grid">
-      <div class="product-card">
-        <img src="images/fruits.jpg" alt="Fresh Fruits">
-        <h3>Fresh Fruits & Vegetables</h3>
-      </div>
-
-      <div class="product-card">
-        <img src="images/spices.jpg" alt="Spices">
-        <h3>Spices & Pulses</h3>
-      </div>
-
-      <div class="product-card">
-        <img src="images/dryfruits.jpg" alt="Dry Fruits">
-        <h3>Dry Fruits & Coconut</h3>
-      </div>
-
-      <div class="product-card">
-        <img src="images/rawmaterials.jpg" alt="Raw Materials">
-        <h3>Edible Oils & Raw Materials</h3>
-      </div>
+  <h2>Featured Products</h2>
+  <div class="product-grid">
+    <div class="product-card">
+      <img src="images/fruits.jpg" alt="Fresh Fruits & Vegetables">
+      <h3>Fresh Fruits & Vegetables</h3>
+    </div>
+    <div class="product-card">
+      <img src="images/spices.jpg" alt="Spices & Pulses">
+      <h3>Spices & Pulses</h3>
+    </div>
+    <div class="product-card">
+      <img src="images/dryfruits.jpg" alt="Dry Fruits & Coconut">
+      <h3>Dry Fruits & Coconut</h3>
+    </div>
+    <div class="product-card">
+      <img src="images/rawmaterials.jpg" alt="Edible Oils & Raw Materials">
+      <h3>Edible Oils & Raw Materials</h3>
     </div>
   </div>
 
   <div class="reach">
     <h2>Our Global Reach</h2>
-    <p>
-      We proudly serve UAE, Bangladesh, Oman, Qatar, Saudi Arabia,
-      and other international markets with consistency and trust.
-    </p>
+    <p>We proudly serve UAE, Bangladesh, Oman, Qatar, Saudi Arabia, and other international markets with consistency and trust.</p>
   </div>
 </section>
 
