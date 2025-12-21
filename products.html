@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Added for better mobile responsiveness -->
 <title>Our Products | Gargi Import Export</title>
 
+<!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 <style>
-/* RESET */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -13,78 +17,315 @@
   font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* BODY BACKGROUND */
+/* Body with Shining Gradient Background (Earthy Greens for Agricultural Theme) */
 body {
-  background: linear-gradient(to right, #f1f8e9, #e8f5e9);
+  background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e9 50%, #dcedc8 100%); /* Subtle green gradient for freshness */
   padding: 40px;
+  min-height: 100vh;
+  color: #2e7d32;
+  position: relative;
 }
 
-/* PAGE TITLE */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none; /* Soft shine overlay */
+  z-index: -1;
+}
+
+/* Page Title with Gradient and Icon */
 .page-title {
   text-align: center;
   font-size: 40px;
+  font-weight: 700;
   color: #2e7d32;
   margin-bottom: 10px;
+  background: linear-gradient(45deg, #2e7d32, #4caf50, #66bb6a); /* Shining green gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
 }
 
+.page-title::before {
+  content: '🌿'; /* Or use FA icon: <i class="fas fa-leaf"></i> */
+  margin-right: 10px;
+  animation: sparkle 2s infinite alternate; /* Subtle shine */
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Page Subtitle */
 .page-subtitle {
   text-align: center;
   color: #555;
   margin-bottom: 40px;
   font-size: 18px;
+  font-style: italic;
 }
 
-/* GRID */
+/* Product Grid */
 .product-grid {
   max-width: 1200px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Larger for descriptions */
+  gap: 30px;
 }
 
-/* CARD */
+/* Product Card with Shiny Effects */
 .product-card {
-  background: #ffffff;
-  border-radius: 14px;
+  background: linear-gradient(145deg, #ffffff 0%, #f1f8e9 100%); /* Subtle inner shine */
+  border-radius: 15px;
   padding: 25px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease; /* Shine sweep on hover */
+}
+
+.product-card:hover::before {
+  left: 100%;
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(76, 175, 80, 0.3); /* Green glow */
 }
 
-/* CARD TITLE */
+/* Card Title with Icon */
 .product-card h3 {
   color: #1b5e20;
-  margin-bottom: 12px;
-  font-size: 22px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
   border-bottom: 2px solid #c8e6c9;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* LIST */
+.product-card h3 i {
+  margin-right: 8px;
+  color: #4caf50;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover h3 i {
+  transform: rotate(10deg); /* Fun shine effect */
+}
+
+/* Added: Product Description */
+.product-card .description {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* List Styling */
 .product-card ul {
   list-style: none;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
 .product-card ul li {
-  padding: 6px 0;
+  padding: 8px 0;
   color: #444;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 20px;
 }
 
-/* FOOTER NOTE */
+.product-card ul li::before {
+  content: '✓'; /* Checkmark for quality */
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* Added: Quality Rating Stars */
+.product-card .rating {
+  margin-bottom: 15px;
+}
+
+.product-card .rating i {
+  color: #f39c12; /* Gold stars for shine */
+  font-size: 16px;
+  margin: 0 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover .rating i {
+  color: #e67e22;
+  transform: scale(1.1);
+}
+
+/* Added: View More Button */
+.view-more-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #4caf50, #66bb6a); /* Shiny green gradient */
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+  margin-top: 10px;
+}
+
+.view-more-btn:hover {
+  background: linear-gradient(45deg, #66bb6a, #4caf50);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.5);
+}
+
+.view-more-btn i {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.view-more-btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Added: Facilities Section (Hidden by Default) */
+.facilities {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background: #f1f8e9;
+  border-radius: 10px;
+  border-left: 4px solid #4caf50;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.facilities.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.facilities h4 {
+  color: #2e7d32;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.facilities p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.facilities ul {
+  margin-left: 20px;
+}
+
+.facilities ul li {
+  font-size: 14px;
+  padding-left: 0;
+}
+
+.facilities ul li::before {
+  content: '•';
+  color: #4caf50;
+}
+
+/* Footer Note with Icons */
 .footer-note {
   text-align: center;
-  margin-top: 50px;
+  margin-top: 60px;
   color: #666;
-  font-size: 15px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #2e7d32, #388e3c);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-note i {
+  margin: 0 5px;
+  color: #c8e6c9;
+  transition: color 0.3s ease;
+}
+
+.footer-note:hover i {
+  color: #fff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+  .page-title {
+    font-size: 32px;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .product-card {
+    padding: 20px;
+  }
+  .product-card ul li {
+    font-size: 14px;
+  }
+  .facilities {
+    padding: 10px;
+  }
 }
 </style>
+
+<script>
+// Simple JavaScript to toggle facilities on button click
+document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.view-more-btn');
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      const facilities = this.nextElementSibling;
+      facilities.classList.toggle('show');
+      const isExpanded = facilities.classList.contains('show');
+      this.setAttribute('aria-expanded', isExpanded);
+      this.innerHTML = isExpanded ? '<i class="fas fa-chevron-up"></i> View Less' : 'View More Facilities <i class="fas fa-chevron-down"></i>';
+    });
+  });
+});
+</script>
 
 </head>
 
@@ -98,7 +339,8 @@ body {
 <div class="product-grid">
 
   <div class="product-card">
-    <h3>🌶️ Spices</h3>
+    <h3><i class="fas fa-pepper-hot"></i> Spices</h3>
+    <p class="description">Sourced from India's finest farms, our spices are organic, aromatic, and packed with authentic flavors—perfect for culinary exports worldwide.</p>
     <ul>
       <li>Turmeric</li>
       <li>Red Chilli</li>
@@ -108,10 +350,29 @@ body {
       <li>Cardamom</li>
       <li>Cloves</li>
     </ul>
+    <div class="rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+    <button class="view-more-btn" aria-expanded="false">View More Facilities <i class="fas fa-chevron-down"></i></button>
+    <div class="facilities">
+      <h4>Our Facilities & Services</h4>
+      <p>We ensure top-quality spice processing with advanced cleaning, grinding, and packaging. Key highlights:</p>
+      <ul>
+        <li>Organic certification and lab testing for purity</li>
+        <li>Customized bulk packaging for international shipping</li>
+        <li>Global export compliance (HACCP, FDA standards)</li>
+        <li>Direct farm-to-export supply chain for freshness</li>
+      </ul>
+    </div>
   </div>
 
   <div class="product-card">
-    <h3>🍎 Fresh Fruits</h3>
+    <h3><i class="fas fa-apple-alt"></i> Fresh Fruits</h3>
+    <p class="description">Juicy, hand-picked fruits bursting with natural sweetness—exported fresh to meet global demand for healthy, seasonal produce.</p>
     <ul>
       <li>Mango</li>
       <li>Banana</li>
@@ -120,10 +381,29 @@ body {
       <li>Apple</li>
       <li>Orange</li>
     </ul>
+    <div class="rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+    <button class="view-more-btn" aria-expanded="false">View More Facilities <i class="fas fa-chevron-down"></i></button>
+    <div class="facilities">
+      <h4>Our Facilities & Services</h4>
+      <p>State-of-the-art cold storage and ripening facilities preserve freshness. Key highlights:</p>
+      <ul>
+        <li>Temperature-controlled warehousing and transit</li>
+        <li>Quality checks for ripeness and pesticide-free standards</li>
+        <li>Custom packaging (crates, vacuum-sealed) for long-distance shipping</li>
+        <li>Direct partnerships with orchards for sustainable sourcing</li>
+      </ul>
+    </div>
   </div>
 
   <div class="product-card">
-    <h3>🥦 Vegetables</h3>
+    <h3><i class="fas fa-carrot"></i> Vegetables</h3>
+    <p class="description">Crisp, farm-fresh vegetables harvested at peak ripeness—ideal for wholesale exports with guaranteed nutritional value.</p>
     <ul>
       <li>Onion</li>
       <li>Potato</li>
@@ -132,10 +412,29 @@ body {
       <li>Okra</li>
       <li>Cabbage</li>
     </ul>
+    <div class="rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+    <button class="view-more-btn" aria-expanded="false">View More Facilities <i class="fas fa-chevron-down"></i></button>
+    <div class="facilities">
+      <h4>Our Facilities & Services</h4>
+      <p>Advanced sorting and grading lines ensure premium quality. Key highlights:</p>
+      <ul>
+        <li>Hygienic washing and cold-chain logistics</li>
+        <li>Organic and non-GMO options available</li>
+        <li>Bulk handling for large-scale exports</li>
+        <li>Compliance with international food safety standards</li>
+      </ul>
+    </div>
   </div>
 
   <div class="product-card">
-    <h3>🌰 Dry Fruits & Nuts</h3>
+    <h3><i class="fas fa-seedling"></i> Dry Fruits & Nuts</h3>
+    <p class="description">Nutritious, premium dry fruits and nuts—sourced organically and roasted to perfection for global health-conscious markets.</p>
     <ul>
       <li>Cashew Nuts</li>
       <li>Almonds</li>
@@ -143,74 +442,26 @@ body {
       <li>Pistachios</li>
       <li>Walnuts</li>
     </ul>
+    <div class="rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+    <button class="view-more-btn" aria-expanded="false">View More Facilities <i class="fas fa-chevron-down"></i></button>
+    <div class="facilities">
+      <h4>Our Facilities & Services</h4>
+      <p>Dedicated processing units for roasting and packaging. Key highlights:</p>
+      <ul>
+        <li>Nutritional testing and aflatoxin-free guarantees</li>
+        <li>Custom roasting and flavoring options</li>
+        <li>Air-tight packaging to maintain freshness</li>
+        <li>Direct from farms with traceability</li>
+      </ul>
+    </div>
   </div>
 
   <div class="product-card">
-    <h3>🌾 Grains & Cereals</h3>
-    <ul>
-      <li>Basmati Rice</li>
-      <li>Non-Basmati Rice</li>
-      <li>Wheat</li>
-      <li>Maize</li>
-      <li>Millets</li>
-    </ul>
-  </div>
-
-  <div class="product-card">
-    <h3>🥬 Pulses & Lentils</h3>
-    <ul>
-      <li>Chickpeas</li>
-      <li>Toor Dal</li>
-      <li>Moong Dal</li>
-      <li>Urad Dal</li>
-      <li>Masoor Dal</li>
-    </ul>
-  </div>
-
-  <div class="product-card">
-    <h3>🥥 Coconut Products</h3>
-    <ul>
-      <li>Fresh Coconut</li>
-      <li>Copra</li>
-      <li>Coconut Oil</li>
-      <li>Desiccated Coconut</li>
-    </ul>
-  </div>
-
-  <div class="product-card">
-    <h3>🛢️ Edible Oils</h3>
-    <ul>
-      <li>Groundnut Oil</li>
-      <li>Mustard Oil</li>
-      <li>Sunflower Oil</li>
-      <li>Soybean Oil</li>
-    </ul>
-  </div>
-
-  <div class="product-card">
-    <h3>🌿 Herbal Products</h3>
-    <ul>
-      <li>Ashwagandha</li>
-      <li>Moringa</li>
-      <li>Aloe Vera</li>
-      <li>Neem Products</li>
-    </ul>
-  </div>
-
-  <div class="product-card">
-    <h3>🧵 Raw Materials</h3>
-    <ul>
-      <li>Raw Cotton</li>
-      <li>Raw Leather</li>
-      <li>Natural Fibers</li>
-    </ul>
-  </div>
-
-</div>
-
-<p class="footer-note">
-  Customized packaging • Bulk orders • Quality assured • Global shipping
-</p>
-
-</body>
-</html>
+    <h3><i class="fas fa-wheat-awn"></i> Grains & Cereals</h3>
+    <p class="description">High-yield, nutritious grains and cereals—m
