@@ -3,49 +3,269 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover premium Indian agricultural and commodity products from Gargi Import Export. Spices, fruits, vegetables, and more for global markets.">
+  <meta name="keywords" content="Indian spices, fresh fruits, export products, Gargi Import Export">
   <title>GARGI IMPORT EXPORT – Products & Services</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Inline styles for new elements to keep it simple */
+    .hero {
+      background: url('https://via.placeholder.com/1200x400/4caf50/fff?text=Premium+Indian+Products') no-repeat center/cover;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .hero h1, .hero p {
+      position: relative;
+      z-index: 1;
+    }
+    .search-filter {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .search-filter input, .search-filter select {
+      padding: 10px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .testimonials {
+      margin: 40px 0;
+      text-align: center;
+    }
+    .testimonial-slider {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+    }
+    .testimonial {
+      min-width: 100%;
+      padding: 20px;
+      background: #f1f8e9;
+      border-radius: 10px;
+      margin: 0 10px;
+    }
+    .cta-section {
+      background: linear-gradient(45deg, #2e7d32, #4caf50);
+      color: #fff;
+      padding: 40px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    .newsletter {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .newsletter input {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+    .dark-mode-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    body.dark-mode {
+      background: #222;
+      color: #fff;
+    }
+    body.dark-mode section, body.dark-mode nav, body.dark-mode footer {
+      background: #333;
+      color: #fff;
+    }
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 2s forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+  </style>
 </head>
 <body>
+  <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
 
-<header>
-  <h1>Our Products & Services</h1>
-  <p>Premium Indian Agricultural and Commodity Products for Global Markets</p>
-</header>
+  <button class="dark-mode-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About Us</a>
-  <a href="services.html">Products</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <header class="hero">
+    <div>
+      <h1>Our Products & Services</h1>
+      <p>Premium Indian Agricultural and Commodity Products for Global Markets</p>
+    </div>
+  </header>
 
-<section>
-  <h2>Our Product Range</h2>
-  <p>GARGI IMPORT EXPORT offers a wide variety of premium Indian products suitable for global markets, including:</p>
-  <ul>
-    <li>All types of Spices</li>
-    <li>Fresh Fruits</li>
-    <li>Fresh Vegetables</li>
-    <li>Dry Fruits & Nuts</li>
-    <li>Perishable Items</li>
-    <li>Non-Perishable Items</li>
-  </ul>
+  <nav>
+    <a href="index.html" aria-label="Go to Home page"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html" aria-label="Learn About Us"><i class="fas fa-info-circle"></i> About Us</a>
+    <a href="services.html" aria-label="View Our Products" class="active"><i class="fas fa-box"></i> Products</a>
+    <a href="contact.html" aria-label="Contact Us"><i class="fas fa-envelope"></i> Contact</a>
+  </nav>
 
-  <h2>Why Choose Us</h2>
-  <ul>
-    <li>Direct sourcing from farmers and trusted suppliers</li>
-    <li>Strict quality control and professional packaging</li>
-    <li>Reliable supply-chain and timely delivery</li>
-    <li>Serving markets across UAE, Bangladesh, Oman, Qatar, Saudi Arabia, and beyond</li>
-  </ul>
+  <section>
+    <div class="search-filter">
+      <input type="text" id="search" placeholder="Search products...">
+      <select id="filter">
+        <option value="all">All Categories</option>
+        <option value="spices">Spices</option>
+        <option value="fruits">Fruits</option>
+        <option value="vegetables">Vegetables</option>
+        <option value="dry-fruits">Dry Fruits & Nuts</option>
+      </select>
+    </div>
 
-  <p>Our mission is to deliver fresh, authentic, and high-quality products to our clients worldwide. GARGI IMPORT EXPORT is your trusted partner for premium Indian products.</p>
-</section>
+    <h2>Our Product Range</h2>
+    <p>GARGI IMPORT EXPORT offers a wide variety of premium Indian products suitable for global markets, including:</p>
+    <ul id="product-list">
+      <li data-category="spices"><i class="fas fa-pepper-hot"></i> All types of Spices</li>
+      <li data-category="fruits"><i class="fas fa-apple-alt"></i> Fresh Fruits</li>
+      <li data-category="vegetables"><i class="fas fa-carrot"></i> Fresh Vegetables</li>
+      <li data-category="dry-fruits"><i class="fas fa-seedling"></i> Dry Fruits & Nuts</li>
+      <li data-category="perishable"><i class="fas fa-snowflake"></i> Perishable Items</li>
+      <li data-category="non-perishable"><i class="fas fa-archive"></i> Non-Perishable Items</li>
+    </ul>
 
-<footer>
-  <p>&copy; 2025 GARGI IMPORT EXPORT. All Rights Reserved.</p>
-</footer>
+    <h2>Why Choose Us</h2>
+    <ul>
+      <li><i class="fas fa-handshake"></i> Direct sourcing from farmers and trusted suppliers</li>
+      <li><i class="fas fa-shield-alt"></i> Strict quality control and professional packaging</li>
+      <li><i class="fas fa-truck"></i> Reliable supply-chain and timely delivery</li>
+      <li><i class="fas fa-globe"></i> Serving markets across UAE, Bangladesh, Oman, Qatar, Saudi Arabia, and beyond</li>
+    </ul>
 
+    <p>Our mission is to deliver fresh, authentic, and high-quality products to our clients worldwide. GARGI IMPORT EXPORT is your trusted partner for premium Indian products.</p>
+
+    <button id="learn-more-btn" aria-expanded="false">Learn More About Our Facilities <i class="fas fa-chevron-down"></i></button>
+    <div id="extra-details" class="hidden">
+      <h3>Additional Facilities & Services</h3>
+      <p>We provide end-to-end solutions, including custom packaging, bulk orders, quality assurance labs, and global shipping partnerships. Contact us for tailored quotes!</p>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-slider" id="testimonial-slider">
+      <div class="testimonial">
+        <p>"Excellent quality spices and timely delivery. Highly recommend for exports!"</p>
+        <cite>- Client from UAE</cite>
+      </div>
+      <div class="testimonial">
+        <p>"Fresh fruits that exceeded our expectations. Great partner for global markets."</p>
+        <cite>- Importer from Qatar</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Partner with Us?</h2>
+    <p>Get a customized quote for your export needs today.</p>
+    <a href="contact.html" class="cta-btn">Get a Quote <i class="fas fa-arrow-right"></i></a>
+  </section>
+
+  <div class="newsletter">
+    <h3>Stay Updated</h3>
+    <input type="email" placeholder="Enter your email">
+    <button>Subscribe</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 GARGI IMPORT EXPORT. All Rights Reserved.</p>
+    <div class="social-links">
+      <a href="#" aria-label="Follow us on Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Follow us on Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Follow us on LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <button id="back-to-top" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i> Top</button>
+  </footer>
+
+  <script>
+    // Loading animation
+    window.addEventListener('load', () => {
+      document.querySelector('.loading').style.display = 'none';
+    });
+
+    // Dark mode toggle
+    document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Search and filter
+    const searchInput = document.getElementById('search');
+    const filterSelect = document.getElementById('filter');
+    const productList = document.getElementById('product-list').children;
+
+    function filterProducts() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const filterValue = filterSelect.value;
+      Array.from(productList).forEach(li => {
+        const text = li.textContent.toLowerCase();
+        const category = li.dataset.category;
+        const matchesSearch = text.includes(searchTerm);
+        const matchesFilter = filterValue === 'all' || category === filterValue;
+        li.style.display = matchesSearch && matchesFilter ? 'block' : 'none';
+      });
+    }
+    searchInput.addEventListener('input', filterProducts);
+    filterSelect.addEventListener('change', filterProducts);
+
+    // Testimonial slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.testimonial');
+    setInterval(() => {
+      slides[currentSlide].style.display = 'none';
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].style.display = 'block';
+    }, 3000);
+
+    // Existing JS for learn more and back to top
+    document.addEventListener('DOMContentLoaded', function() {
+      const learnMoreBtn = document.getElementById('learn-more-btn');
+      const extraDetails = document.getElementById('extra-details');
+      learnMoreBtn.addEventListener('click', function() {
+        const isExpanded = extraDetails.classList.toggle('show');
+        learnMoreBtn.setAttribute('aria-expanded', isExpanded);
+        learnMoreBtn.innerHTML = isExpanded ? 'Show Less <i class="fas fa-chevron-up"></i>' : 'Learn More About Our Facilities <i class="fas fa-chevron-down"></i>';
+      });
+
+      const backToTopBtn = document.getElementById('back-to-top');
+      backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('scroll', function() {
+        backToTopBtn.style.display = window.scrollY > 200 ? 'block' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
