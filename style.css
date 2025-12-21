@@ -3,64 +3,223 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* More professional font stack */
 }
 
+/* Body with Shining Gradient Background */
 body {
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #dee2e6 100%); /* Subtle shining gradient */
   padding: 40px;
+  min-height: 100vh;
+  color: #2c3e50;
+  position: relative;
 }
 
-/* Page Title */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none; /* Adds a soft shine overlay */
+  z-index: -1;
+}
+
+/* Page Title with Gradient Text, Shadow, and Icon */
 .page-title {
   text-align: center;
   font-size: 36px;
+  font-weight: 700;
   margin-bottom: 40px;
-  color: #2c3e50;
+  background: linear-gradient(45deg, #27ae60, #2ecc71, #3498db); /* Shining gradient text */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+}
+
+.page-title i {
+  margin-right: 10px;
+  color: #f39c12; /* Gold color for shine */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  animation: sparkle 2s infinite alternate; /* Subtle sparkle animation */
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.8; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
 }
 
 /* Product Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly larger for better visuals */
   gap: 30px;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-/* Product Card */
+/* Product Card with Shiny Metallic Border */
 .product-card {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%); /* Subtle inner shine */
+  border: 2px solid transparent;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8); /* Inner highlight for shine */
   text-align: center;
-  padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 25px;
+  transition: all 0.4s ease; /* Smoother transitions */
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease; /* Shine sweep animation */
+}
+
+.product-card:hover::before {
+  left: 100%;
 }
 
 .product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(39, 174, 96, 0.3); /* Glowing border effect */
+  border-color: rgba(39, 174, 96, 0.5); /* Shiny green accent */
 }
 
-/* Product Image */
+/* Product Image with Shine Effect */
 .product-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 15px;
+  transition: filter 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover img {
+  filter: brightness(1.1) contrast(1.05); /* Enhances shine on hover */
 }
 
 /* Product Title */
 .product-card h3 {
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 600;
   color: #27ae60;
   margin-bottom: 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Product Description */
 .product-card p {
-  font-size: 15px;
+  font-size: 16px;
   color: #555;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+/* Added: Product Price */
+.product-card .price {
+  font-size: 20px;
+  font-weight: 700;
+  color: #e74c3c;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Added: Rating Stars */
+.product-card .rating {
+  margin-bottom: 20px;
+}
+
+.product-card .rating i {
+  color: #f39c12; /* Gold for shining stars */
+  font-size: 18px;
+  margin: 0 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.product-card:hover .rating i {
+  color: #e67e22; /* Darker gold on hover for extra shine */
+  transform: scale(1.1);
+}
+
+/* Added: Buy Now Button with Icon */
+.product-card .btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(45deg, #27ae60, #2ecc71); /* Shiny gradient button */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
+}
+
+.product-card .btn i {
+  margin-right: 8px; /* Space between icon and text */
+  transition: transform 0.3s ease;
+}
+
+.product-card .btn:hover {
+  background: linear-gradient(45deg, #2ecc71, #27ae60);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(39, 174, 96, 0.5);
+}
+
+.product-card .btn:hover i {
+  transform: translateX(3px); /* Subtle slide animation for icon */
+}
+
+/* Added: Footer for Professional Touch with Icon */
+.footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #ecf0f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.footer i {
+  margin-right: 5px;
+  color: #bdc3c7; /* Subtle gray for footer icon */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+  .page-title {
+    font-size: 28px;
+  }
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .product-card {
+    padding: 20px;
+  }
+  .product-card .rating i {
+    font-size: 16px; /* Smaller stars on mobile */
+  }
 }
