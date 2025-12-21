@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gargi Import Export: Premium Indian agricultural and commodity products for global markets. Fresh spices, fruits, and more exported worldwide.">
+  <meta name="keywords" content="Indian export, agricultural products, spices, fruits, Gargi Import Export">
   <title>GARGI IMPORT EXPORT – Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     /* RESET */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -15,6 +18,19 @@
       background: linear-gradient(-45deg, #c8e6c9, #a5d6a7, #81c784, #66bb6a);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     @keyframes gradientBG {
@@ -22,6 +38,22 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
+
+    /* Loading Spinner */
+    .loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 2s forwards;
+    }
+    @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
 
     /* NAVIGATION */
     nav {
@@ -40,11 +72,12 @@
       margin: 0 18px;
       text-decoration: none;
       font-weight: 600;
-      padding: 8px 15px;
+      padding: 12px 20px; /* Larger for touch */
       border-radius: 25px;
       transition: 0.3s;
+      min-height: 44px; /* Accessibility */
     }
-    nav a:hover { background: rgba(255,255,255,0.2); }
+    nav a:hover, nav a:focus { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
     /* HERO SECTION */
     header {
@@ -55,22 +88,40 @@
       text-align: center;
       padding: 100px 20px;
       color: #fff;
+      background: url('https://via.placeholder.com/1200x600/4caf50/fff?text=Premium+Indian+Exports') no-repeat center/cover;
+      position: relative;
+      overflow: hidden;
     }
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shine 4s infinite;
+    }
+    @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
     header h1 {
       font-size: 3.2rem;
       letter-spacing: 2px;
       margin-bottom: 20px;
       text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+      position: relative;
+      z-index: 1;
     }
     header p {
       font-size: 1.2rem;
       max-width: 700px;
       margin-bottom: 30px;
       text-shadow: 1px 1px 8px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
     }
     .hero-btn {
       display: inline-block;
-      background: #1b5e20;
+      background: linear-gradient(45deg, #1b5e20, #43a047);
       color: #fff;
       padding: 15px 30px;
       margin: 5px;
@@ -79,9 +130,12 @@
       font-weight: bold;
       transition: 0.3s;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+      min-height: 44px;
     }
     .hero-btn:hover {
-      background: #43a047;
+      background: linear-gradient(45deg, #43a047, #1b5e20);
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
@@ -91,8 +145,10 @@
       max-width: 1200px;
       margin: auto;
       padding: 60px 20px;
+      animation: fadeIn 1s ease-in;
     }
-    h2 { color: #1b5e20; margin-bottom: 30px; text-align: center; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    h2 { color: #1b5e20; margin-bottom: 30px; text-align: center; font-size: 2rem; }
 
     /* WHY US CARDS */
     .why-us ul {
@@ -108,12 +164,26 @@
       border-left: 6px solid #1b5e20;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
     }
+    .why-us li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.6s ease;
+    }
+    .why-us li:hover::before { left: 100%; }
     .why-us li:hover {
       transform: translateY(-8px);
       box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     }
     .why-us li strong { color: #1b5e20; font-size: 1.1rem; }
+    .why-us li i { margin-right: 10px; color: #4caf50; }
 
     /* PRODUCTS GRID */
     .product-grid {
@@ -129,6 +199,7 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       text-align: center;
+      position: relative;
     }
     .product-card:hover {
       transform: translateY(-8px);
@@ -138,10 +209,60 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
+      transition: filter 0.3s ease;
     }
+    .product-card:hover img { filter: brightness(1.1) contrast(1.05); }
     .product-card h3 {
       padding: 15px;
       color: #1b5e20;
+    }
+    .product-card .view-btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 25px;
+      transition: 0.3s;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .product-card:hover .view-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* STATS SECTION */
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      margin: 40px 0;
+      text-align: center;
+    }
+    .stat {
+      background: rgba(255,255,255,0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .stat h3 { font-size: 2rem; color: #1b5e20; }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      background: rgba(255,255,255,0.9);
+      padding: 40px;
+      border-radius: 15px;
+      margin: 40px 0;
+      text-align: center;
+    }
+    .testimonial-slider {
+      display: flex;
+      overflow: hidden;
+    }
+    .testimonial {
+      min-width: 100%;
+      padding: 20px;
     }
 
     /* REACH SECTION */
@@ -154,6 +275,37 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
 
+    /* QUOTE MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+    }
+    .modal input, .modal button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .modal button { background: #4caf50; color: #fff; border: none; cursor: pointer; }
+
     /* FOOTER */
     footer {
       background: #1b5e20;
@@ -163,71 +315,112 @@
       margin-top: 80px;
       font-size: 0.95rem;
     }
+    .newsletter {
+      margin: 20px 0;
+    }
+    .newsletter input {
+      padding: 10px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+    .newsletter button {
+      padding: 10px 20px;
+      background: #fff;
+      color: #1b5e20;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
     /* RESPONSIVE */
     @media (max-width:768px) {
       header h1 { font-size: 2.4rem; }
       header p { font-size: 1rem; }
+      nav { flex-direction: column; }
+      .stats { flex-direction: column; }
     }
   </style>
 </head>
 
 <body>
+  <div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
 
-<header>
-  <h1>GARGI IMPORT EXPORT</h1>
-  <p>Your Trusted Global Partner for Premium Indian Agricultural & Commodity Products</p>
-  <a href="products.html" class="hero-btn">Explore Products</a>
-  <a href="contact.html" class="hero-btn">Contact Us</a>
-</header>
+  <header>
+    <h1>GARGI IMPORT EXPORT</h1>
+    <p>Your Trusted Global Partner for Premium Indian Agricultural & Commodity Products</p>
+    <a href="products.html" class="hero-btn">Explore Products</a>
+    <a href="contact.html" class="hero-btn">Contact Us</a>
+    <button class="hero-btn" id="quote-btn">Get Quick Quote</button>
+  </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="about.html">About Us</a>
-  <a href="products.html">Products</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="products.html">Products</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 
-<section>
-  <h2>Why Choose Us</h2>
-  <div class="why-us">
-    <ul>
-      <li><strong>Direct Farmer Sourcing</strong><br>Fresh, traceable & high-quality produce</li>
-      <li><strong>Strong Supply Chain</strong><br>Efficient logistics & timely delivery</li>
-      <li><strong>Quality Assurance</strong><br>International export standards followed</li>
-      <li><strong>Export-Ready Packaging</strong><br>Safe & professional packaging</li>
-    </ul>
-  </div>
-
-  <h2>Featured Products</h2>
-  <div class="product-grid">
-    <div class="product-card">
-      <img src="images/fruits.jpg" alt="Fresh Fruits & Vegetables">
-      <h3>Fresh Fruits & Vegetables</h3>
+  <section>
+    <h2>Why Choose Us</h2>
+    <div class="why-us">
+      <ul>
+        <li><i class="fas fa-handshake"></i><strong>Direct Farmer Sourcing</strong><br>Fresh, traceable & high-quality produce</li>
+        <li><i class="fas fa-truck"></i><strong>Strong Supply Chain</strong><br>Efficient logistics & timely delivery</li>
+        <li><i class="fas fa-shield-alt"></i><strong>Quality Assurance</strong><br>International export standards followed</li>
+        <li><i class="fas fa-box"></i><strong>Export-Ready Packaging</strong><br>Safe & professional packaging</li>
+      </ul>
     </div>
-    <div class="product-card">
-      <img src="images/spices.jpg" alt="Spices & Pulses">
-      <h3>Spices & Pulses</h3>
-    </div>
-    <div class="product-card">
-      <img src="images/dryfruits.jpg" alt="Dry Fruits & Coconut">
-      <h3>Dry Fruits & Coconut</h3>
-    </div>
-    <div class="product-card">
-      <img src="images/rawmaterials.jpg" alt="Edible Oils & Raw Materials">
-      <h3>Edible Oils & Raw Materials</h3>
-    </div>
-  </div>
 
-  <div class="reach">
-    <h2>Our Global Reach</h2>
-    <p>We proudly serve UAE, Bangladesh, Oman, Qatar, Saudi Arabia, and other international markets with consistency and trust.</p>
-  </div>
-</section>
+    <div class="stats">
+      <div class="stat">
+        <h3>10+</h3>
+        <p>Years in Business</p>
+      </div>
+      <div class="stat">
+        <h3>50+</h3>
+        <p>Countries Served</p>
+      </div>
+      <div class="stat">
+        <h3>1000+</h3>
+        <p>Tons Exported</p>
+      </div>
+    </div>
 
-<footer>
-  <p>&copy; 2025 GARGI IMPORT EXPORT. All Rights Reserved.</p>
-</footer>
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="images/fruits.jpg" alt="Fresh Fruits & Vegetables" loading="lazy">
+        <h3>Fresh Fruits & Vegetables</h3>
+        <a href="products.html#fruits" class="view-btn">View Details</a>
+      </div>
+      <div class="product-card">
+        <img src="images/spices.jpg" alt="Spices & Pulses" loading="lazy">
+        <h3>Spices & Pulses</h3>
+        <a href="products.html#spices" class="view-btn">View Details</a>
+      </div>
+      <div class="product-card">
+        <img src="images/dryfruits.jpg" alt="Dry Fruits & Coconut" loading="lazy">
+        <h3>Dry Fruits & Coconut</h3>
+        <a href="products.html#dryfruits" class="view-btn">View Details</a>
+      </div>
+      <div class="product-card">
+        <img src="images/rawmaterials.jpg" alt="Edible Oils & Raw Materials" loading="lazy">
+        <h3>Edible Oils & Raw Materials</h3>
+        <a href="products.html#oils" class="view-btn">View Details</a>
+      </div>
+    </div>
 
-</body>
-</html>
+    <div class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial-slider" id="testimonial-slider">
+        <div class="testimonial">
+          <p>"Outstanding quality and reliable service. Gargi is our go-to for exports!"</p>
+          <cite>- UAE Importer</cite>
+        </div>
+        <div class="testimonial">
+          <p>"Fresh products delivered on time. Highly recommended for global markets."</p>
+          <cite>- Qatar Distributor</cite>
+        </div>
+      </div>
+    </div
